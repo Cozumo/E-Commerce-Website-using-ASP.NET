@@ -1,0 +1,22 @@
+﻿@model ProjectSE.Models.Tbl_Order
+
+@{
+    ViewBag.Title = "DirectEnter";
+}
+<br />
+<h2>ORDER CONFIRMED</h2>
+<br />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Click Ok to Proceed:</h4>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="OK" class="btn btn-primary btn-round" />
+            </div>
+        </div>
+    </div>
+}

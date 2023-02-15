@@ -1,0 +1,77 @@
+﻿@model ProjectSE.Models.Tbl_Cart
+
+@{
+    ViewBag.Title = "CustomerCreate";
+}
+<style>
+    .slidecontainer {
+        width: 100%;
+    }
+
+    .slider {
+        -webkit-appearance: none;
+        width: 70%;
+        height: 25px;
+        background: #d3d3d3;
+        outline: none;
+        opacity: 0.7;
+        -webkit-transition: .2s;
+        transition: opacity .2s;
+    }
+
+    .slider:hover {
+        opacity: 1;
+    }
+
+    .slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 25px;
+        height: 25px;
+        background: #fa680c;
+        cursor: pointer;
+    }
+
+    .slider::-moz-range-thumb {
+        width: 25px;
+        height: 25px;
+        background: #fa680c;
+        cursor: pointer;
+    }
+</style>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <br />
+    <br />
+    <h4>Enter Quantity and Confirm add to cart?</h4>
+    <br />
+    <br />
+
+    <div class="form-group">
+        <div class="col-md-10">
+            <input id="pi_input" type="range" min="0" max="15" step="1" name="Quantity" class="slider"/>
+            <h3>Value: <output id="value"></output></h3>
+            @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <script>
+        const value = document.querySelector("#value")
+        const input = document.querySelector("#pi_input")
+        value.textContent = input.value
+        input.addEventListener("input", (event) => {
+            value.textContent = event.target.value
+        })
+    </script>
+
+    <div class="form-horizontal">
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="ADD TO CART" class="btn btn-primary btn-round" />
+            </div>
+        </div>
+    </div>
+}

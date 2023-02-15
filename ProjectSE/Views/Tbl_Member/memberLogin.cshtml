@@ -1,0 +1,35 @@
+﻿@model ProjectSE.Models.Tbl_Member
+
+@{
+    ViewBag.Title = "memberLogin";
+}
+
+<h2>Login as Customer</h2>
+
+@using (Html.BeginForm("memberLogin", "Tbl_Member", FormMethod.Post))
+{
+    <table>
+        <tr>
+            <th>
+                <label>Enter Your Email:   </label>
+            </th>
+            <th>
+                @Html.TextBoxFor(model => model.EmailId, new { @class = "Form-Control" })
+            </th>
+        </tr>
+        <br />
+        <tr>
+            <th>
+                <label>Enter Your Password:   </label>
+            </th>
+            <th>
+                @Html.PasswordFor(model => model.Password, new { @class = "Form-Control" })
+            </th>
+        </tr>
+    </table>
+ 
+    <br />
+    <br />
+    <input type="submit" value="Login" name="Login" class="btn btn-primary btn-round"/>
+    @ViewBag.Errormsg
+}

@@ -1,0 +1,35 @@
+﻿@model IEnumerable<ProjectSE.Models.Tbl_Order>
+
+@{
+    ViewBag.Title = "CustomerView";
+}
+
+<h2>Order Details</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Tbl_Product.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tbl_ShippingDetail.ShippingDetailId)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        if (Convert.ToInt32(TempData["orPval"]) == item.Tbl_ShippingDetail.ShippingDetailId)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tbl_Product.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tbl_ShippingDetail.ShippingDetailId)
+                </td>
+            </tr>
+        }
+
+    }
+
+</table>

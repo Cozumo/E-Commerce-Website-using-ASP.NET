@@ -1,0 +1,48 @@
+﻿@model ProjectSE.Models.Tbl_Cart
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Tbl_Cart</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tbl_Member.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tbl_Member.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tbl_Product.ProductName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tbl_Product.ProductName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tbl_Product1.ProductName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tbl_Product1.ProductName)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+        </div>
+    }
+</div>

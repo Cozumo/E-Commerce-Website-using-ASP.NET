@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ProjectSE.Models.Tbl_Product>
+
+@{
+    ViewBag.Title = "Product_List";
+}
+<br />
+<br />
+<div class="blue_bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="titlepage">
+                    <h2>Featured Products</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- project section -->
+<div id="project" class="project">
+    <div class="container">
+
+        @foreach (var item in Model)
+        {
+            <p><b>@Html.DisplayFor(modelItem => item.ProductName)</b></p>
+            <table class="table">
+                <td>
+                    <th><img src="@Url.Content(item.ProductImage)" alt="#" width="180" height="180" /></th>
+                </td>
+                <td>
+                    <table class="table">
+                        <tr>
+                            <th>@Html.LabelFor(modelItem => item.ProductDesc)</th>
+                            <th>@Html.LabelFor(modelItem => item.Price)</th>
+                            <th>@Html.LabelFor(modelItem => item.Quantity)</th>
+                            <th>@Html.LabelFor(modelItem => item.ModifiedDate)</th>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.ProductDesc)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Quantity) </td>
+                            <td>@Html.DisplayFor(modelItem => item.ModifiedDate)</td>
+                        </tr>
+                    </table>
+                </td>
+                    <tr>@Html.ActionLink("ProductDetails", "ProductDetails", new { id = item.ProductId })</tr>
+            </table>
+}
+    </div>
+</div>
+<!-- end project section -->
+<!-- Javascript files-->
+<script src="~/Content/js/jquery.min.js"></script>
+<script src="~/Content/js/popper.min.js"></script>
+<script src="~/Content/js/bootstrap.bundle.min.js"></script>
+<script src="~/Content/js/jquery-3.0.0.min.js"></script>
+<!-- sidebar -->
+<script src="~/Content/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="~/Content/js/custom.js"></script>

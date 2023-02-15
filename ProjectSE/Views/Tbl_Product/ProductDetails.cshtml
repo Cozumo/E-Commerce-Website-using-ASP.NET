@@ -1,0 +1,63 @@
+﻿@model ProjectSE.Models.Tbl_Product
+
+@{
+    ViewBag.Title = "ProductDetails";
+}
+
+<h2>ProductDetails</h2>
+
+
+<main class="main">
+    <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
+        <div class="container d-flex align-items-center">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Default</li>
+            </ol>
+        </div><!-- End .container -->
+    </nav><!-- End .breadcrumb-nav -->
+
+    <div class="page-content">
+        <div class="container">
+            <div class="product-details-top">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="product-gallery product-gallery-vertical">
+                            <div class="row">
+                                <figure class="product-main-image">
+                                    <img id="product-zoom" src="@Url.Content(Model.ProductImage)" data-zoom-image="@Url.Content(Model.ProductImage)" alt="product image">
+
+                                    <a href="#" id="btn-product-gallery" class="btn-product-gallery">
+                                        <i class="icon-arrows"></i>
+                                    </a>
+                                </figure><!-- End .product-main-image -->
+                            </div><!-- End .row -->
+                        </div><!-- End .product-gallery -->
+                    </div><!-- End .col-md-6 -->
+
+                    <div class="col-md-6">
+                        <div class="product-details">
+                            <h1 class="product-title">@Html.DisplayFor(model => model.ProductName)</h1><!-- End .product-title -->
+
+                            <div class="product-price">
+                                @Html.DisplayFor(model => model.Price)
+                            </div><!-- End .product-price -->
+
+                            <div class="product-content">
+                                <p>@Html.DisplayFor(model => model.ProductDesc)</p>
+                            </div><!-- End .product-content -->
+
+                            @Html.ActionLink("ADD TO CART", "CustomerCreate", "Tbl_Cart", new { id = Model.ProductId, em = Session["UserName"] }, new { @class = "btn-product btn-cart" });
+                            <div class="product-details-footer">
+                                <div class="product-cat">
+                                    <span>Category:</span>
+                                    @Html.DisplayFor(model => model.Tbl_Category.CategoryName)
+                                </div><!-- End .product-cat -->
+                            </div><!-- End .product-details-footer -->
+                        </div><!-- End .product-details -->
+                    </div><!-- End .col-md-6 -->
+                </div><!-- End .row -->
+            </div><!-- End .product-details-top -->
+        </div><!-- End .container -->
+    </div><!-- End .page-content -->
+</main><!-- End .main -->

@@ -1,0 +1,120 @@
+﻿@model IEnumerable<ProjectSE.Models.Tbl_Cart>
+
+@{
+    ViewBag.Title = "Cart_List";
+}
+
+<br>
+@{Session["Total"] = 0;}
+@{ List<int> lt = new List<int>();}
+<table class="table">
+    <main class="main">
+        <div class="page-header text-center" style="background-image: url('~/images/page-header-bg.jpg')">
+            <div class="container">
+                <h1 class="page-title">Shopping Cart<span>Shop</span></h1>
+            </div><!-- End .container -->
+        </div><!-- End .page-header -->
+        <nav aria-label="breadcrumb" class="breadcrumb-nav">
+            <div class="container">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Shopping Cart</li>
+                </ol>
+            </div><!-- End .container -->
+        </nav><!-- End .breadcrumb-nav -->
+
+        <div class="page-content">
+            <div class="cart">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <table class="table table-cart table-mobile">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Product</th>
+                                        <th>Description</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Total</th>
+                                        <th>Remove</th>
+                                    </tr>
+                                </thead>
+
+                                <p>
+                                    @Html.ActionLink("ADD NEW ITEM TO CART", "Product_list", "Tbl_Product")
+                                </p>
+                                @foreach (var item in Model)
+                                {
+                                    if (item.Tbl_Member.EmailId == Convert.ToString(Session["UserName"]))
+                                    {
+                                        { Session["qt"] = Convert.ToInt32((item.Quantity)) * Convert.ToInt32((item.Tbl_Product1.Price)); }
+                                        { lt.Add(Convert.ToInt32(item.ProductId)); }
+                                        <tbody>
+                                            <tr>
+                                                <td></td>
+                                                <td class="product-col">
+                                                    <div class="product">
+                                                        <figure class="product-media">
+                                                            <a href="#">
+                                                                <img src="@Url.Content(item.Tbl_Product1.ProductImage)" alt="Product image">
+                                                            </a>
+                                                        </figure>
+
+                                                        <h3 class="product-title">
+                                                            <a href="#">@Html.DisplayFor(modelItem => item.Tbl_Product1.ProductName)</a>
+                                                        </h3>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <h3 class="product-title">
+                                                        <a href="#">@Html.DisplayFor(modelItem => item.Tbl_Product1.ProductDesc)</a>
+                                                    </h3>
+                                                </td>
+                                                <td class="price-col">@Html.DisplayFor(modelItem => item.Tbl_Product1.Price)</td>
+                                                <td class="product-title">@Html.DisplayFor(modelItem => item.Quantity)</td>
+                                                <td class="product-title">@Session["qt"]</td>
+                                                <td>@Html.ActionLink("Delete", "Delete", new { id = item.CartId })</td>
+                                            </tr>
+                                        </tbody>
+                                        Session["Total"] = Convert.ToInt32(Session["Total"]) + (Convert.ToInt32(Session["qt"]));
+                                    }
+                                }
+                            </table><!-- End .table table-wishlist -->
+
+                            </div><!-- End .cart-bottom -->
+                        </div><!-- End .col-lg-9 -->
+                        <aside class="col-lg-3">
+                            <div class="summary summary-cart">
+                                <h3 class="summary-title">Cart Total</h3><!-- End .summary-title -->
+
+                                <table class="table table-summary">
+                                    <tbody>
+                                        <tr class="summary-total">
+                                            <td>Total:</td>
+                                            <td>@Session["Total"]</td>
+                                        </tr><!-- End .summary-total -->
+                                    </tbody>
+                                </table><!-- End .table table-summary -->
+                                @{Session["crtids"] = lt;}
+                                @Html.ActionLink("Checkout", "Checkout", "Tbl_ShippingDetail", new { em = Session["UserName"]}, new { @class = "btn-product btn-cart" });
+                            </div><!-- End .summary -->
+
+                        </aside><!-- End .col-lg-3 -->
+                    </div><!-- End .row -->
+                </div><!-- End .container -->
+            </div><!-- End .cart -->
+        </div><!-- End .page-content -->
+    </main><!-- End .main -->
+</table>
+
+<!-- Plugins JS File -->
+<script src="~/js/jquery.min.js"></script>
+<script src="~/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/jquery.hoverIntent.min.js"></script>
+<script src="~/js/jquery.waypoints.min.js"></script>
+<script src="~/js/superfish.min.js"></script>
+<script src="~/js/owl.carousel.min.js"></script>
+<script src="~/js/bootstrap-input-spinner.js"></script>
+<!-- Main JS File -->
+<script src="~/js/main.js"></script>

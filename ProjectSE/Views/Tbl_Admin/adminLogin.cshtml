@@ -1,0 +1,32 @@
+﻿@model ProjectSE.Models.Tbl_Admin
+
+@{
+    ViewBag.Title = "adminLogin";
+}
+
+<h2>adminLogin</h2>
+<br />
+@using (Html.BeginForm("adminLogin", "Tbl_Admin", FormMethod.Post))
+{
+    <table>
+        <tr>
+            <td>
+                <label>Enter Your ID:   </label>
+            </td>
+            <td></td>
+            <td>@Html.TextBoxFor(model => model.Adminid, new { @class = "Form-Control" })</td>
+        </tr>
+
+        <tr>
+            <td>
+                <label>Enter Your Password:   </label>
+            </td>
+            <td></td>
+            <td>@Html.PasswordFor(model => model.pass, new { @class = "Form-Control" })</td>
+        </tr>
+    </table>
+    <br />
+    <br />
+    <input type="submit" value="Login" name="Login" class="btn btn-primary btn-round"/>
+    @ViewBag.Errormsg
+}
